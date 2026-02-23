@@ -51,3 +51,129 @@ if (usuarios < 0)
     Console.WriteLine("Numero de usuarios no valido");
     return;
 }
+string severidad = "";
+string respuesta = "";
+
+switch (incidente)
+{
+    case 1: // Malware
+        switch (activo)
+        {
+            case 2: // Servidor
+                if (persistencia == 'S')
+                {
+                    severidad = "Critica";
+                    respuesta = "Aislar servidor inmediatamente - Analisis forense completo";
+                }
+                else
+                {
+                    severidad = "Alta";
+                    respuesta = "Limpieza de malware - Reinstalacion del sistema";
+                }
+                break;
+            case 3: 
+                if (datos >= 3)
+                {
+                    severidad = "Critica";
+                    respuesta = "Cortar acceso - Auditoria de datos - Notificar autoridades";
+                }
+                else
+                {
+                    severidad = "Alta";
+                    respuesta = "Escaneo completo - Restaurar desde backup";
+                }
+                break;
+            default: 
+                if (datos >= 3)
+                {
+                    severidad = "Alta";
+                    respuesta = "Limpieza de equipos - Revision de datos comprometidos";
+                }
+                else
+                {
+                    severidad = "Media";
+                    respuesta = "Limpieza de equipos - Capacitacion al usuario";
+                }
+                break;
+        }
+        break;
+
+    case 2: // Phishing
+        if (datos >= 4) 
+        {
+            severidad = "Critica";
+            respuesta = "Bloquear cuentas - Notificar banco - Cambiar credenciales";
+        }
+        else if (datos >= 3) 
+        {
+            severidad = "Alta";
+            respuesta = "Cambiar credenciales - Alertar a usuarios afectados";
+        }
+        else
+        {
+            severidad = "Media";
+            respuesta = "Bloquear cuenta comprometida - Enviar alerta";
+        }
+        break;
+
+    case 3: // Acceso no autorizado
+        if (datos >= 4)
+        {
+            severidad = "Critica";
+            respuesta = "Revocar accesos - Investigar brecha - Notificar afectados";
+        }
+        else if (datos >= 3)
+        {
+            severidad = "Alta";
+            respuesta = "Cambiar contraseñas - Revisar logs de acceso";
+        }
+        else
+        {
+            severidad = "Media";
+            respuesta = "Bloquear usuario - Alertar al propietario";
+        }
+        break;
+
+    case 4: // Fuga de informacion
+        if (datos >= 4)
+        {
+            severidad = "Critica";
+            respuesta = "Investigar origen - Notificar autoridades - Comunicado oficial";
+        }
+        else if (datos >= 3)
+        {
+            severidad = "Alta";
+            respuesta = "Identificar datos filtrados - Alertar afectados";
+        }
+        else
+        {
+            severidad = "Media";
+            respuesta = "Revisar controles de acceso - Documentar incidente";
+        }
+        break;
+
+    default:
+        Console.WriteLine("Incidente no valido");
+        return;
+}
+
+if (usuarios > 100)
+{
+    if (severidad == "Media")
+    {
+        severidad = "Alta";
+    }
+    else if (severidad == "Alta")
+    {
+        severidad = "Critica";
+    }
+}
+else if (usuarios <= 5 && datos == 1)
+{
+    severidad = "Baja";
+    respuesta = "Monitoreo basico - Documentar incidente";
+}
+
+Console.WriteLine("\n=== CLASIFICACION DE INCIDENTE ===");
+Console.WriteLine("Severidad: " + severidad);
+Console.WriteLine("Respuesta: " + respuesta);
