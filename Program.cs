@@ -30,3 +30,24 @@ char persistencia = char.Parse(Console.ReadLine().ToUpper());
 
 Console.Write("Numero de usuarios afectados: ");
 int usuarios = int.Parse(Console.ReadLine());
+
+if (incidente < 1 || incidente > 4)
+{
+    Console.WriteLine("Tipo de incidente no valido");
+    return;
+}
+if (activo < 1 || activo > 4)
+{
+    Console.WriteLine("Activo no valido");
+    return;
+}
+if (datos < 1 || datos > 4)
+{
+    Console.WriteLine("Tipo de datos no valido");
+    return;
+}
+if (usuarios < 0)
+{
+    Console.WriteLine("Numero de usuarios no valido");
+    return;
+}
